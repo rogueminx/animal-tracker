@@ -5,6 +5,21 @@
   <div class="card-body">
     <img src="http://www.conserveireland.com/wp-content/uploads/2018/03/399788.jpg" alt="">
   </div>
+
+  <% if @animal.sightings.any? %>
+  <h4>Here are the sightings for this animal:</h4>
+
+    <% @animal.sightings.each do |sighting| %>
+        <p>Last Date Seen: <%= sighting.date %></p>
+        <p>Last Location Seen: <%= sighting.lat_lng.x %>,<%= sighting.lat_lng.y %></p>
+        <%= link_to "Edit", edit_animal_sighting_path(@animal, sighting) %>
+        <%= link_to "NEW", new_animal_sighting_path(@animal) %>
+        <%= link_to "Delete", animal_sighting_path(@animal, sighting), :data => {:confirm => "Are you sure?", :method => "delete"} %>
+    <% end %>
+  <% else %>
+    <p>There are no sightings yet!</p>
+  <% end %>
+
   <p><%= link_to "HOME", animals_path %></p>
   <p><%= link_to "EDIT", edit_animal_path %></p>
   <p><%= link_to "DELETE", animal_path, :data => {
