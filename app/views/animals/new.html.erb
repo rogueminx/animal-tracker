@@ -3,11 +3,7 @@
     <h2>Hey there, Friend. What's your favorite animal?</h2>
   </div>
 
-  <%= form_for @animal do |f| %>
-    <!-- <%= f.label :kind %> -->
-    <%= f.text_field :kind %>
-    <%= f.submit  %>
-  <% end %>
+  <%= render "form" %>
 
   <p><%= link_to "HOME", animals_path %></p>
 </div>
