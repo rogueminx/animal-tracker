@@ -6,4 +6,7 @@
     <img src="http://www.conserveireland.com/wp-content/uploads/2018/03/399788.jpg" alt="">
   </div>
   <p><%= link_to "HOME", animals_path %></p>
+  <p><%= link_to "EDIT", edit_animal_path %></p>
+  <p><%= link_to "DELETE", animal_path, :data =>
+    {:confirm => "You sure?", :method => "delete"} %></p>
 </div>
