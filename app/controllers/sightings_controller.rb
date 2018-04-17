@@ -1,8 +1,8 @@
 class SightingsController < ApplicationController
+
   def new
     @animal = Animal.find(params[:animal_id])
     @sighting = @animal.sightings.new
-    render :new
   end
 
   def create
@@ -13,6 +13,29 @@ class SightingsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+    @animal = Animal.find(params[:animal_id])
+    @sighting = Sighting.find(params[:id])
+    @params = params
+    @x = @sighting.lat_lng.x
+    @y = @sighting.lat_lng.y
+  end
+
+  def update
+    @sighting = Sighting.find(params[:id])
+    if @sighting.update!(sighting_params)
+      redirect_to animal_path(@sighting.animal)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @sighting = Sighting.find(params[:id])
+    @sighting.destroy
+    redirect_to animal_path(@sighting.animal)
   end
 
 private

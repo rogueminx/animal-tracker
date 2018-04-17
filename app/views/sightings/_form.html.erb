@@ -3,7 +3,13 @@
 <%= form_for [@animal, @sighting] do |f| %>
   <%= f.label :date %>
   <%= f.date_field :date %>
-  <%= f.label :lat_lng, 'Enter the latitude, longitude:' %>
-  <%= f.text_field :lat_lng %>
-  <p><%= f.submit %></p>
+  <% if @params %>
+    <%= f.label :lat_lng, 'NEW latitude, longitude:' %>
+    <%= f.text_field :lat_lng, :value => "#{@x}, #{@y}" %>
+  <% else %>
+    <%= f.label :lat_lng, 'Enter the latitude, longitude:' %>
+    <%= f.text_field :lat_lng, :value => "ex: 100.44, 55.23" %>
+  <% end %>
+    <p><%= f.submit %></p>
+
 <% end %>

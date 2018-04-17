@@ -1,9 +1,9 @@
-<div class="card" style="text-align:center;margin:10px;border:1px solid black;width:800px;margin:0 auto;">
-  <div class="card-header">
+<div class="panel" style="text-align:center;margin:10px;border:1px solid black;width:800px;margin:0 auto;">
+  <div class="panel-header">
     <h2><%= @animal.kind %></h2>
   </div>
-  <div class="card-body">
-    <img src="http://www.conserveireland.com/wp-content/uploads/2018/03/399788.jpg" alt="">
+  <div class="panel-body">
+    <img src="http://www.conserveireland.com/wp-content/uploads/2018/03/399788.jpg" style="width: 600px; margin: 0, auto;" alt="">
   </div>
 
   <% if @animal.sightings.any? %>
@@ -19,8 +19,10 @@
   <% else %>
     <p>There are no sightings yet!</p>
   <% end %>
+  <hr>
 
   <p><%= link_to "HOME", animals_path %></p>
+  <p><%= link_to "ADD SIGHTING", new_animal_sighting_path(@animal) %></p>
   <p><%= link_to "EDIT", edit_animal_path %></p>
   <p><%= link_to "DELETE", animal_path, :data => {
       :confirm => "You sure?", :method => "delete"
