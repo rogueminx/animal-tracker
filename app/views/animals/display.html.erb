@@ -3,14 +3,14 @@
     <h2><%= @animal.kind %></h2>
   </div>
   <div class="panel-body">
-    <img src="http://www.conserveireland.com/wp-content/uploads/2018/03/399788.jpg" style="width: 600px; margin: 0, auto;" alt="">
+    <a href="http://thecatapi.com"><img src="http://thecatapi.com/api/images/get?format=src&type=gif" style="width: 600px; height: 400px; margin: 0, auto;" alt=""></a>
   </div>
 
   <% if @animal.sightings.any? %>
   <h4>Here are the sightings for this animal:</h4>
 
-    <% @animal.sightings.each do |sighting| %>
-        <p>Last Date Seen: <%= sighting.date %></p>
+    <% @sightings.each do |sighting| %>
+        <h3>Last Date Seen: <%= sighting.date %></h3>
         <p>Last Location Seen: <%= sighting.lat_lng.x %>,<%= sighting.lat_lng.y %></p>
         <%= link_to "Edit", edit_animal_sighting_path(@animal, sighting) %>
         <%= link_to "NEW", new_animal_sighting_path(@animal) %>

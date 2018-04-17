@@ -1,10 +1,43 @@
 <% content_for(:title, "Animals | Master List") %>
-<h1>Animals</h1>
 
-<ul>
-  <% @animals.each do |animal| %>
-    <li><%= link_to animal.kind, animal_path(animal) %></li>
+<div class="panel" style="text-align:center;margin:10px;border:1px solid black;width:800px;margin:0 auto;">
+  <h1>Animals</h1>
+  <%= link_to "ADD ANIMAL", new_animal_path %>
+</div>
+<br>
+<div class="panel" style="text-align:center;margin:10px;border:1px solid black;width:800px;margin:0 auto;">
+  <div class="row">
+    <div class="col-md-6">
+      <ol style="list-style:numbered;">
+        <% @seen_animals.each do |animal| %>
+          <li><%= link_to animal.kind, animal_path(animal) %></li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="col-md-6">
+      <ol>
+        <% @unseen_animals.each do |animal| %>
+          <li><%= link_to animal.kind, animal_path(animal) %></li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+</div><br>
+<div class="panel" style="text-align:center;margin:10px;border:1px solid black;width:800px;margin:0 auto;">
+  <h1>Recent Sightings</h1>
+  <% @recent_sightings.each do |sighting| %>
+    <li><%= sighting.date %></li>
   <% end %>
-</ul>
+</div>
+<br>
+<div class="panel" style="text-align:center;margin:10px;border:1px solid black;width:800px;margin:0 auto;">
+  <h1>Current Sightings</h1>
+  <% @current_sightings.each do |sighting| %>
+    <li><%= sighting.date %></li>
+  <% end %>
+</div>
 
-<%= image_tag "trees.jpeg" %>
+
+
+
+<!-- <%= image_tag "trees.jpeg" %> -->

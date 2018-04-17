@@ -1,10 +1,16 @@
 class AnimalsController < ApplicationController
   def index
     @animals = Animal.all
+    @seen_animals = Animal.sighted
+    @unseen_animals = Animal.not_sighted
+    @recent_sightings = Sighting.recent_sightings
+
+    @current_sightings = Sighting.current_sightings
   end
 
   def show
     @animal = Animal.find(params[:id])
+    @sightings = @animal.sightings.sort_by {|obj| obj.date}
     render :display
   end
 
@@ -45,7 +51,7 @@ class AnimalsController < ApplicationController
 
   private
     def animal_params
-      params.require(:animal).permit(:kind)
+      params.require(:animal).permit(:kind, :sighted)
     end
 
 end
